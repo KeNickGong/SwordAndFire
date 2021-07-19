@@ -1,3 +1,10 @@
+Build:  - Sat Jul 17 16:23:44 GMT 2021
+	ateranimavis:
+		Use '{assets_root}' rather than task output path for userdev config (#7873)
+		
+		Signed-off-by: AterAnimAvis <AterAnimAvis@gmail.com>
+
+=========
 Build: 1.16.5-36.1.61 - Sat Jul 17 11:14:53 GMT 2021
 	thelnfamous1:
 		Patch several mob classes to let them use modded versions of their ranged weapons (#7845)

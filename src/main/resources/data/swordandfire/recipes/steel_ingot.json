@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "swordandfire:steel_nugget",
+      "tags": "nuggets/steel"
+    }
+  },
+  "result": {
+    "item": "swordandfire:steel_ingot",
+    "count": 1
+  }
+}

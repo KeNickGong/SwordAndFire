@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "swordandfire:steel_ingot",
+      "tags": "ingots/steel"
+    }
+  ],
+  "result": {
+    "item": "swordandfire:steel_nugget",
+    "count": 9
+  }
+}

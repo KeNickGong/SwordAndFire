@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "swordandfire:block/forge_furnace",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "swordandfire:block/forge_furnace",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "swordandfire:block/forge_furnace"
+    },
+    "facing=west": {
+      "model": "swordandfire:block/forge_furnace",
+      "y": 90
+    }
+  }
+}

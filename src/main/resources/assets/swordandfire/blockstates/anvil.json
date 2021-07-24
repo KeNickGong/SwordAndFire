@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "swordandfire:block/anvil",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "swordandfire:block/anvil",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "swordandfire:block/anvil"
+    },
+    "facing=west": {
+      "model": "swordandfire:block/anvil",
+      "y": 90
+    }
+  }
+}

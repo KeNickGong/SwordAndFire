@@ -17,6 +17,8 @@ public class ItemRegistry {
     public static final Item STEEL_INGOT = new SaFItem("steel_ingot", MATERIAL);
     public static final Item STEEL_NUGGET = new SaFItem("steel_nugget", MATERIAL);
 
+    public static final Item VIKING_SWORD_BODY = new SaFItem("viking_sword_body", MATERIAL);
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         try {

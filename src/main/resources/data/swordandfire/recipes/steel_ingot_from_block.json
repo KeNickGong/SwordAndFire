@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "swordandfire:steel_block",
+      "tags": "blocks/steel"
+    }
+  ],
+  "result": {
+    "item": "swordandfire:steel_ingot",
+    "count": 9
+  }
+}

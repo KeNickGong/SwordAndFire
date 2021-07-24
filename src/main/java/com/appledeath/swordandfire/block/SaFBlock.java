@@ -18,7 +18,6 @@ public class SaFBlock extends Block {
                         .harvestLevel(toolStrength)
                         .setRequiresTool()
         );
-
         this.setRegistryName(Utils.MOD_ID, name);
     }
 }

@@ -1,8 +1,11 @@
 package com.appledeath.swordandfire;
 
 import com.appledeath.swordandfire.item.SaFItem;
+import com.appledeath.swordandfire.item.SaFSwordItem;
+import com.appledeath.swordandfire.item.SaFWeaponTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemTier;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -13,11 +16,12 @@ import java.lang.reflect.Field;
 public class ItemRegistry {
     //Tabs
     private static final ItemGroup MATERIAL = SwordAndFire.TAB_MATERIALS;
+    private static final ItemGroup WEAPON = SwordAndFire.TAB_WEAPONS;
 
     public static final Item STEEL_INGOT = new SaFItem("steel_ingot", MATERIAL);
     public static final Item STEEL_NUGGET = new SaFItem("steel_nugget", MATERIAL);
 
-    public static final Item VIKING_SWORD_BODY = new SaFItem("viking_sword_body", MATERIAL);
+    public static final Item VIKING_SWORD = new SaFSwordItem(SaFWeaponTier.TIER_ZERO, 4, -2.4F, "viking_sword", WEAPON);
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {

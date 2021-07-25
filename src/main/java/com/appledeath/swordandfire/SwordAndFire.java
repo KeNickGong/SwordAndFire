@@ -25,7 +25,7 @@ public class SwordAndFire {
     public static ItemGroup TAB_WEAPONS = new ItemGroup(Utils.MOD_ID + "weapons") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(BlockRegistry.STEEL_BLOCK);
+            return new ItemStack(ItemRegistry.VIKING_SWORD);
         }
     };
     public static ItemGroup TAB_BLOCKS = new ItemGroup(Utils.MOD_ID + "blocks") {

@@ -1,8 +1,6 @@
 package com.appledeath.swordandfire;
 
-import com.appledeath.swordandfire.item.SaFItem;
-import com.appledeath.swordandfire.item.SaFSwordItem;
-import com.appledeath.swordandfire.item.SaFWeaponTier;
+import com.appledeath.swordandfire.item.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemTier;
@@ -21,7 +19,9 @@ public class ItemRegistry {
     public static final Item STEEL_INGOT = new SaFItem("steel_ingot", MATERIAL);
     public static final Item STEEL_NUGGET = new SaFItem("steel_nugget", MATERIAL);
 
-    public static final Item VIKING_SWORD = new SaFSwordItem(SaFWeaponTier.TIER_ZERO, 4, -2.4F, "viking_sword", WEAPON);
+    public static final Item VIKING_SWORD = new SaFSwordItem(SaFWeaponTier.TIER_ZERO, 4, -2.4F, 50,"viking_sword", WEAPON);
+    public static final Item VIKING_AXE = new SaFAxeItem(SaFWeaponTier.TIER_ZERO, 4, -2.4F, 50,"viking_axe", WEAPON);
+    public static final Item CRESCENT_AXE = new SaFLargeAxeItem(SaFWeaponTier.TIER_ONE, 7, -3.2F, 70, "crescent_axe", WEAPON);
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {

@@ -12,9 +12,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class WeaponCapabilityProvider implements ICapabilityProvider, INBTSerializable {
-    final WeaponCapability data = new WeaponCapability();
+    final WeaponCapability data;
 
-    public WeaponCapabilityProvider() { }
+    public WeaponCapabilityProvider() {
+        data = new WeaponCapability();
+    }
+
+    public WeaponCapabilityProvider(float base_weight, float base_flex, float base_range) {
+        data = new WeaponCapability(base_weight, base_flex, base_range, 0, 0);
+    }
 
     @Nonnull
     @Override

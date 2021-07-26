@@ -3,7 +3,10 @@ package com.appledeath.swordandfire.capability;
 import com.appledeath.swordandfire.Utils;
 import com.appledeath.swordandfire.capability.IWeaponCapability;
 import com.appledeath.swordandfire.capability.WeaponCapability;
+import com.appledeath.swordandfire.item.SaFAxeItem;
+import com.appledeath.swordandfire.item.SaFLargeAxeItem;
 import com.appledeath.swordandfire.item.SaFSwordItem;
+import com.appledeath.swordandfire.item.SaFWeaponGenericItem;
 import com.google.common.eventbus.Subscribe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -42,15 +45,32 @@ public class SaFCapabilityManager {
     public static void onStackAttachCapabilities(@Nonnull final AttachCapabilitiesEvent<ItemStack> e) {
         final ItemStack obj = e.getObject();
         final Item item = obj.getItem();
-        if (!(item instanceof SaFSwordItem)) {
-            return;
-        }
+
         final IWeaponCapability capability = new WeaponCapability(); // Default Storage could be used
-        e.addCapability(
-                WEAPON_CAPABILITY_NAME,
-                // Use SimplePersistentCapabilityProvider if in need of persisting data
-                new WeaponCapabilityProvider()
-        );
+
+        if (!(item instanceof SaFWeaponGenericItem)) {
+            return;
+        } else if (item instanceof SaFSwordItem) { //Attach basic cap for sword
+            e.addCapability(
+                    WEAPON_CAPABILITY_NAME,
+                    new WeaponCapabilityProvider(50, 50, 3.5F)
+            );
+        } else if (item instanceof SaFAxeItem) {
+            e.addCapability(
+                    WEAPON_CAPABILITY_NAME,
+                    new WeaponCapabilityProvider(50, 50, 3.5F)
+            );
+        } else if (item instanceof SaFLargeAxeItem) {
+            e.addCapability(
+                    WEAPON_CAPABILITY_NAME,
+                    new WeaponCapabilityProvider(70, 40, 3.5F)
+            );
+        } else {
+            e.addCapability(
+                    WEAPON_CAPABILITY_NAME,
+                    new WeaponCapabilityProvider()
+            );
+        }
     }
 
 }

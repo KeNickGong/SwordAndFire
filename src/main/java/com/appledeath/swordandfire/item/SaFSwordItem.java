@@ -12,28 +12,17 @@ import net.minecraftforge.items.IItemHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SaFSwordItem extends SwordItem {
-    private static final String MAX_DAMAGE_NBT_KEY = Utils.MOD_ID + "_max_damage";
-    private static final String WEIGHT_NBT_KEY = Utils.MOD_ID + "_weight";
-    private static final String FLEXIBILITY_NBT_KEY = Utils.MOD_ID + "_flexibility";
-    private static final String RANGE_NBT_KEY = Utils.MOD_ID + "_range";
+public class SaFSwordItem extends SaFWeaponGenericItem {
 
-    public SaFSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, String name, ItemGroup category){
-        super(tier, attackDamageIn, attackSpeedIn, new Item.Properties().group(category).maxStackSize(1));
+    public SaFSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, float baseWeight, String name, ItemGroup category){
+        super(tier, attackDamageIn, attackSpeedIn, baseWeight, name, category);
+
         this.setRegistryName(name);
     }
+
 
 //    @Override
 //    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot, ItemStack stack) {
 //        return null;
 //    }
-
-
-    @Override
-    public int getMaxDamage(ItemStack stack) {
-        int baseDurability = this.getTier().getMaxUses();
-        CompoundNBT nbt = stack.getTag();
-        float weight = nbt.getFloat(MAX_DAMAGE_NBT_KEY);
-        return 100;
-    }
 }

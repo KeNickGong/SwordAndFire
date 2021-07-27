@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 
 public class WeaponCapabilityStorage implements Capability.IStorage<IWeaponCapability>{
 
-    protected WeaponCapabilityStorage() {
+    public WeaponCapabilityStorage() {
     }
 
     @Nullable

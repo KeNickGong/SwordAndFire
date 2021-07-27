@@ -1,0 +1,18 @@
+{
+  "itemGroup.swordandfire.materials": "剑与火-材料",
+  "itemGroup.swordandfire.weapons": "剑与火-武器",
+  "itemGroup.swordandfire.blocks": "剑与火-方块",
+
+  "item.swordandfire.steel_ingot": "钢锭",
+  "item.swordandfire.steel_nugget": "钢粒",
+  "block.swordandfire.steel_block": "钢块",
+
+  "item.swordandfire.viking_sword": "维京单手剑",
+  "item.swordandfire.viking_axe": "维京单手斧",
+  "item.swordandfire.crescent_axe": "新月斧",
+
+  "block.swordandfire.anvil": "铁砧",
+  "block.swordandfire.forge_furnace": "锻炉",
+
+  "trait.swordandfire.two_handed": "双手"
+}

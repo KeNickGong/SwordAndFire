@@ -3,10 +3,7 @@ package com.appledeath.swordandfire.capability;
 import com.appledeath.swordandfire.Utils;
 import com.appledeath.swordandfire.capability.IWeaponCapability;
 import com.appledeath.swordandfire.capability.WeaponCapability;
-import com.appledeath.swordandfire.item.SaFAxeItem;
-import com.appledeath.swordandfire.item.SaFLargeAxeItem;
-import com.appledeath.swordandfire.item.SaFSwordItem;
-import com.appledeath.swordandfire.item.SaFWeaponGenericItem;
+import com.appledeath.swordandfire.item.*;
 import com.google.common.eventbus.Subscribe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,30 +24,27 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = Utils.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SaFCapabilityManager {
     @CapabilityInject(IWeaponCapability.class)
-    @Nonnull
     public static Capability<IWeaponCapability> WEAPON_CAPABILITY = null;
     public static final ResourceLocation WEAPON_CAPABILITY_NAME = new ResourceLocation(Utils.MOD_ID, "weapon_capability");
 
-    private SaFCapabilityManager() { }
 
-    public static void registerCapabilities() {
-        CapabilityManager.INSTANCE.register(
-                IWeaponCapability.class,
-                new WeaponCapabilityStorage(),
-                WeaponCapability::new
-        );
-    }
+    @CapabilityInject(IWeaponTraitCapability.class)
+    public static Capability<IWeaponTraitCapability> WEAPON_TRAIT_CAPABILITY = null;
+    public static final ResourceLocation WEAPON_TRAIT_CAPABILITY_NAME = new ResourceLocation(Utils.MOD_ID, "weapon_trait_capability");
+
+    private SaFCapabilityManager() { }
 
     @SubscribeEvent
     public static void onStackAttachCapabilities(@Nonnull final AttachCapabilitiesEvent<ItemStack> e) {
         final ItemStack obj = e.getObject();
         final Item item = obj.getItem();
 
-        final IWeaponCapability capability = new WeaponCapability(); // Default Storage could be used
 
+        //Weapon Capability
         if (!(item instanceof SaFWeaponGenericItem)) {
             return;
-        } else if (item instanceof SaFSwordItem) { //Attach basic cap for sword
+        }
+        if (item instanceof SaFSwordItem) { //Attach basic cap for sword
             e.addCapability(
                     WEAPON_CAPABILITY_NAME,
                     new WeaponCapabilityProvider(50, 50, 3.5F)
@@ -63,12 +57,30 @@ public class SaFCapabilityManager {
         } else if (item instanceof SaFLargeAxeItem) {
             e.addCapability(
                     WEAPON_CAPABILITY_NAME,
-                    new WeaponCapabilityProvider(70, 40, 3.5F)
+                    new WeaponCapabilityProvider(70, 40, 4.5F)
+            );
+        } else if (item instanceof SaFLargeSwordItem) {
+            e.addCapability(
+                    WEAPON_CAPABILITY_NAME,
+                    new WeaponCapabilityProvider(60, 40, 4.0F)
             );
         } else {
             e.addCapability(
                     WEAPON_CAPABILITY_NAME,
                     new WeaponCapabilityProvider()
+            );
+        }
+
+        //Weapon Trait Capability
+        if (item instanceof ISaFTwoHanded) {
+            e.addCapability(
+                    WEAPON_TRAIT_CAPABILITY_NAME,
+                    new WeaponTraitCapabilityProvider(true)
+            );
+        } else {
+            e.addCapability(
+                    WEAPON_TRAIT_CAPABILITY_NAME,
+                    new WeaponTraitCapabilityProvider()
             );
         }
     }

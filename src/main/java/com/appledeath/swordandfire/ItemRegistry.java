@@ -20,6 +20,7 @@ public class ItemRegistry {
     public static final Item STEEL_NUGGET = new SaFItem("steel_nugget", MATERIAL);
 
     public static final Item VIKING_SWORD = new SaFSwordItem(SaFWeaponTier.TIER_ZERO, 4, -2.4F, 50,"viking_sword", WEAPON);
+    public static final Item LONG_SWORD = new SaFLargeSwordItem(SaFWeaponTier.TIER_TWO, 7, -3.0F, 60,"long_sword", WEAPON);
     public static final Item VIKING_AXE = new SaFAxeItem(SaFWeaponTier.TIER_ZERO, 4, -2.4F, 50,"viking_axe", WEAPON);
     public static final Item CRESCENT_AXE = new SaFLargeAxeItem(SaFWeaponTier.TIER_ONE, 7, -3.2F, 70, "crescent_axe", WEAPON);
 

@@ -1,7 +1,9 @@
 package com.appledeath.swordandfire.Proxy;
 
 import com.appledeath.swordandfire.Utils;
+import com.appledeath.swordandfire.capability.*;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 

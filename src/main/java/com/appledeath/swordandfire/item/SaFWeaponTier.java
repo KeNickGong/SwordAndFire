@@ -6,7 +6,8 @@ import net.minecraft.item.crafting.Ingredient;
 public enum SaFWeaponTier implements IItemTier {
 
     TIER_ZERO(2, 250, 6, 0, 0),
-    TIER_ONE(2, 300, 6, 0, 0);
+    TIER_ONE(2, 300, 6, 0, 0),
+    TIER_TWO(2, 350, 6, 0, 0);
 
     private final int harvestLevel;
     private final int maxUses;

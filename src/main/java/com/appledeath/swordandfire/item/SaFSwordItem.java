@@ -14,10 +14,8 @@ import javax.annotation.Nullable;
 
 public class SaFSwordItem extends SaFWeaponGenericItem {
 
-    public SaFSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, float baseWeight, String name, ItemGroup category){
-        super(tier, attackDamageIn, attackSpeedIn, baseWeight, name, category);
-
-        this.setRegistryName(name);
+    public SaFSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, float baseWeight, float baseFlex, float baseRange, String name, ItemGroup category){
+        super(tier, attackDamageIn, attackSpeedIn, baseWeight, baseFlex, baseRange, name, category);
     }
 
 

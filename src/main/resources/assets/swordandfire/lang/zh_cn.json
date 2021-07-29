@@ -8,11 +8,20 @@
   "block.swordandfire.steel_block": "钢块",
 
   "item.swordandfire.viking_sword": "维京单手剑",
+  "item.swordandfire.long_sword": "手半剑",
   "item.swordandfire.viking_axe": "维京单手斧",
   "item.swordandfire.crescent_axe": "新月斧",
+  "item.swordandfire.nailed_mace": "钉锤",
+  "item.swordandfire.gaulish_lance": "高卢骑枪",
 
   "block.swordandfire.anvil": "铁砧",
   "block.swordandfire.forge_furnace": "锻炉",
 
-  "trait.swordandfire.two_handed": "双手"
+  "trait.swordandfire.two_handed": "双手",
+  "trait.swordandfire.armor_penetrable_1": "破甲 I",
+  "trait.swordandfire.armor_penetrable_2": "破甲 II",
+  "trait.swordandfire.shield_penetrable_1": "破盾 I",
+  "trait.swordandfire.shield_penetrable_2": "破盾 II",
+  "trait.swordandfire.cavalry_bonus_1": "骑击 I",
+  "trait.swordandfire.cavalry_bonus_2": "骑击 II"
 }

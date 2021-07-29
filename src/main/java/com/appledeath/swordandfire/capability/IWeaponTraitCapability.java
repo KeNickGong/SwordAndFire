@@ -9,4 +9,13 @@ public interface IWeaponTraitCapability extends INBTSerializable<CompoundNBT>  {
 
     boolean isOffhandEmpty();
     void setIsOffhandEmpty(boolean isOffhandEmpty);
+
+    boolean isArmorPenetrable();
+    void setIsArmorPenetrable(boolean isArmorPenetrable);
+
+    boolean isShieldPenetrable();
+    void setIsShieldPenetrable(boolean isShieldPenetrable);
+
+    boolean isCavalryBonus();
+    void setIsCavarlyBonus(boolean isCavarlyBonus);
 }

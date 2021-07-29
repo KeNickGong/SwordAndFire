@@ -1,25 +1,21 @@
 package com.appledeath.swordandfire.capability;
 
 import com.appledeath.swordandfire.Utils;
-import com.appledeath.swordandfire.capability.IWeaponCapability;
-import com.appledeath.swordandfire.capability.WeaponCapability;
 import com.appledeath.swordandfire.item.*;
-import com.google.common.eventbus.Subscribe;
+import com.appledeath.swordandfire.item.weapontrait.ISaFArmorPenetrable;
+import com.appledeath.swordandfire.item.weapontrait.ISaFCavalryBonus;
+import com.appledeath.swordandfire.item.weapontrait.ISaFShieldPenetrable;
+import com.appledeath.swordandfire.item.weapontrait.ISaFTwoHanded;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nonnull;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = Utils.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SaFCapabilityManager {
@@ -44,45 +40,30 @@ public class SaFCapabilityManager {
         if (!(item instanceof SaFWeaponGenericItem)) {
             return;
         }
-        if (item instanceof SaFSwordItem) { //Attach basic cap for sword
-            e.addCapability(
-                    WEAPON_CAPABILITY_NAME,
-                    new WeaponCapabilityProvider(50, 50, 3.5F)
-            );
-        } else if (item instanceof SaFAxeItem) {
-            e.addCapability(
-                    WEAPON_CAPABILITY_NAME,
-                    new WeaponCapabilityProvider(50, 50, 3.5F)
-            );
-        } else if (item instanceof SaFLargeAxeItem) {
-            e.addCapability(
-                    WEAPON_CAPABILITY_NAME,
-                    new WeaponCapabilityProvider(70, 40, 4.5F)
-            );
-        } else if (item instanceof SaFLargeSwordItem) {
-            e.addCapability(
-                    WEAPON_CAPABILITY_NAME,
-                    new WeaponCapabilityProvider(60, 40, 4.0F)
-            );
-        } else {
-            e.addCapability(
-                    WEAPON_CAPABILITY_NAME,
-                    new WeaponCapabilityProvider()
-            );
-        }
+
+        e.addCapability(
+                WEAPON_CAPABILITY_NAME,
+                new WeaponCapabilityProvider(((SaFWeaponGenericItem) item).getBaseWeight(), ((SaFWeaponGenericItem) item).getBaseFlex(), ((SaFWeaponGenericItem) item).getBaseRange())
+        );
 
         //Weapon Trait Capability
+        boolean[] traitProps = new boolean[] {false, false, false, false};
         if (item instanceof ISaFTwoHanded) {
-            e.addCapability(
-                    WEAPON_TRAIT_CAPABILITY_NAME,
-                    new WeaponTraitCapabilityProvider(true)
-            );
-        } else {
-            e.addCapability(
-                    WEAPON_TRAIT_CAPABILITY_NAME,
-                    new WeaponTraitCapabilityProvider()
-            );
+            traitProps[0] = true;
         }
+        if (item instanceof ISaFArmorPenetrable) {
+            traitProps[1] = true;
+        }
+        if (item instanceof ISaFShieldPenetrable) {
+            traitProps[2] = true;
+        }
+        if (item instanceof ISaFCavalryBonus) {
+            traitProps[3] = true;
+        }
+        e.addCapability(
+                WEAPON_TRAIT_CAPABILITY_NAME,
+                new WeaponTraitCapabilityProvider(traitProps)
+        );
     }
 
 }

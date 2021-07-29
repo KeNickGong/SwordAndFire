@@ -2,8 +2,11 @@ package com.appledeath.swordandfire.Proxy;
 
 import com.appledeath.swordandfire.Utils;
 import com.appledeath.swordandfire.capability.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
@@ -14,7 +17,6 @@ public class CommonProxy {
     }
 
     public void init() {
-
     }
 
     public void postInit() {

@@ -5,11 +5,16 @@ import com.appledeath.swordandfire.capability.IWeaponCapability;
 import com.appledeath.swordandfire.capability.SaFCapabilityManager;
 import com.appledeath.swordandfire.capability.WeaponCapability;
 import com.appledeath.swordandfire.capability.WeaponCapabilityProvider;
+import com.appledeath.swordandfire.item.weapontrait.ISaFArmorPenetrable;
+import com.appledeath.swordandfire.item.weapontrait.ISaFCavalryBonus;
+import com.appledeath.swordandfire.item.weapontrait.ISaFShieldPenetrable;
+import com.appledeath.swordandfire.item.weapontrait.ISaFTwoHanded;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -44,23 +49,36 @@ public class SaFWeaponGenericItem extends SwordItem {
 
     private final float attackDamage;
     private final float attackSpeed;
+
     private final float baseWeight;
+    private final float baseFlex;
+    private final float baseRange;
 
     protected static final UUID MOVEMENT_SPEED_MODIFIER = UUID.randomUUID();
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.randomUUID();
 
-    public static final TextFormatting[] TRAIT_COLOR = {TextFormatting.YELLOW, TextFormatting.ITALIC};
+    public static final TextFormatting[] TRAIT_COLOR = {TextFormatting.DARK_RED};
 
-    public SaFWeaponGenericItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, float baseWeight, String name, ItemGroup category) {
+    public SaFWeaponGenericItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, float baseWeight, float baseFlex, float baseRange, String name, ItemGroup category) {
         super(tier, attackDamageIn, attackSpeedIn, new Item.Properties().group(category).maxStackSize(1));
         this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
         this.attackSpeed = (float)attackSpeedIn;
         this.baseWeight = baseWeight;
+        this.baseFlex = baseFlex;
+        this.baseRange = baseRange;
+
+        this.setRegistryName(name);
     }
 
     public float getAttackSpeed() {
         return attackSpeed;
     }
+
+    public float getBaseWeight() { return baseWeight; }
+
+    public float getBaseFlex() { return baseFlex; }
+
+    public float getBaseRange() { return baseRange; }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
@@ -124,8 +142,18 @@ public class SaFWeaponGenericItem extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         CompoundNBT WeaponTrait = stack.serializeNBT().getCompound("ForgeCaps").getCompound("swordandfire:weapon_trait_capability");
-        if (WeaponTrait.getBoolean(TWO_HANDED_NBT_KEY)) {
+
+        if (stack.getItem() instanceof ISaFTwoHanded) {
             tooltip.add(new TranslationTextComponent("trait." + Utils.MOD_ID + ".two_handed").mergeStyle(TRAIT_COLOR));
+        }
+        if (stack.getItem() instanceof ISaFArmorPenetrable) {
+            tooltip.add(new TranslationTextComponent("trait." + Utils.MOD_ID + ".armor_penetrable_" + ((ISaFArmorPenetrable) stack.getItem()).getArmorPenetrableLevel()).mergeStyle(TRAIT_COLOR));
+        }
+        if (stack.getItem() instanceof ISaFShieldPenetrable) {
+            tooltip.add(new TranslationTextComponent("trait." + Utils.MOD_ID + ".shield_penetrable_" + ((ISaFShieldPenetrable) stack.getItem()).getShieldPenetrableLevel()).mergeStyle(TRAIT_COLOR));
+        }
+        if (stack.getItem() instanceof ISaFCavalryBonus) {
+            tooltip.add(new TranslationTextComponent("trait." + Utils.MOD_ID + ".cavalry_bonus_" + ((ISaFCavalryBonus) stack.getItem()).getCavalryBonusLevel()).mergeStyle(TRAIT_COLOR));
         }
         //tooltip.add(new StringTextComponent("SHIT"));
     }

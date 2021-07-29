@@ -1,4 +1,4 @@
-package com.appledeath.swordandfire.item;
+package com.appledeath.swordandfire.item.weapontrait;
 
 public interface ISaFTwoHanded {
     boolean getTwoHanded();

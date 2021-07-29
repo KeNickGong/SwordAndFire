@@ -18,8 +18,8 @@ public class WeaponTraitCapabilityProvider  implements ICapabilityProvider, INBT
         data = new WeaponTraitCapability();
     }
 
-    public WeaponTraitCapabilityProvider(boolean isTwoHanded) {
-        data = new WeaponTraitCapability(isTwoHanded);
+    public WeaponTraitCapabilityProvider(boolean[] traitProps) {
+        data = new WeaponTraitCapability(traitProps);
     }
 
     @Nonnull

@@ -1,24 +1,30 @@
 package com.appledeath.swordandfire.event;
 
 import com.appledeath.swordandfire.Utils;
-import com.appledeath.swordandfire.capability.IWeaponCapability;
 import com.appledeath.swordandfire.capability.IWeaponTraitCapability;
 import com.appledeath.swordandfire.capability.SaFCapabilityManager;
-import com.appledeath.swordandfire.capability.WeaponCapability;
-import com.appledeath.swordandfire.item.ISaFTwoHanded;
-import com.google.common.collect.Multimap;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
+import com.appledeath.swordandfire.item.weapontrait.ISaFArmorPenetrable;
+import com.appledeath.swordandfire.item.weapontrait.ISaFCavalryBonus;
+import com.appledeath.swordandfire.item.weapontrait.ISaFShieldPenetrable;
+import com.appledeath.swordandfire.item.weapontrait.ISaFTwoHanded;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
+import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Random;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Utils.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -48,5 +54,86 @@ public class SaFWeaponTraitEvent {
             }
         });
 
+    }
+
+    @SubscribeEvent
+    public static void armorPenetrationModifier(LivingHurtEvent e) {
+        float baseDamage = e.getAmount();
+        int victimArmorValue = 0;
+
+        if (!(e.getSource().getTrueSource() instanceof PlayerEntity)) {
+            return;
+        }
+        PlayerEntity attacker = (PlayerEntity) e.getSource().getTrueSource();
+        LivingEntity victim = e.getEntityLiving();
+
+        ItemStack weapon = attacker.getHeldItemMainhand();
+        if (!(weapon.getItem() instanceof ISaFArmorPenetrable)) {
+            return;
+        }
+
+        Iterable<ItemStack> armors = victim.getArmorInventoryList();
+        ISaFArmorPenetrable weaponItem = (ISaFArmorPenetrable) weapon.getItem();
+
+        for (ItemStack armor : armors) {
+            if (!armor.isEmpty() && (armor.getItem() instanceof ArmorItem)) {
+                victimArmorValue += ((ArmorItem) armor.getItem()).getDamageReduceAmount();
+            }
+        }
+        e.setAmount((victimArmorValue >= 10 ? (victimArmorValue - 10) * (0.25F + (weaponItem.getArmorPenetrableLevel() * 0.25F)) : 0) + baseDamage);
+    }
+
+    @SubscribeEvent
+    public static void shieldPenetrationModifier(LivingAttackEvent e) {
+
+        float damage = e.getAmount();
+
+        if (!(e.getSource().getTrueSource() instanceof PlayerEntity)) {
+            return;
+        }
+        PlayerEntity attacker = (PlayerEntity) e.getSource().getTrueSource();
+        LivingEntity victim = e.getEntityLiving();
+
+        ItemStack weapon = attacker.getHeldItemMainhand();
+        if (!(weapon.getItem() instanceof ISaFShieldPenetrable)) {
+            return;
+        }
+
+        ISaFShieldPenetrable weaponItem = (ISaFShieldPenetrable) weapon.getItem();
+        ItemStack shield = victim.getActiveItemStack();
+
+        if (victim.isActiveItemStackBlocking() && shield.getItem() instanceof ShieldItem) {
+            shield.damageItem((int) damage * (1 + weaponItem.getShieldPenetrableLevel()), victim, player -> {});
+        }
+    }
+
+    @SubscribeEvent
+    public static void cavalryBonusModifier(LivingHurtEvent e) {
+        float baseDamage = e.getAmount();
+
+        if (!(e.getSource().getTrueSource() instanceof PlayerEntity)) {
+            return;
+        }
+
+        PlayerEntity attacker = (PlayerEntity) e.getSource().getTrueSource();
+        LivingEntity victim = e.getEntityLiving();
+
+        ItemStack weapon = attacker.getHeldItemMainhand();
+        if (!(weapon.getItem() instanceof ISaFCavalryBonus)) {
+            return;
+        }
+
+        ISaFCavalryBonus weaponItem = (ISaFCavalryBonus) weapon.getItem();
+
+        if (attacker.getRidingEntity() instanceof AbstractHorseEntity) {
+            if (weaponItem.getCavalryBonusLevel() == 1) {
+                baseDamage = baseDamage * 2;
+            } else {
+                baseDamage = baseDamage * (1 + weaponItem.getCavalryBonusLevel());
+                victim.addPotionEffect(new EffectInstance(Effects.MINING_FATIGUE, 60, weaponItem.getCavalryBonusLevel() - 1));
+            }
+        }
+
+        e.setAmount(baseDamage);
     }
 }

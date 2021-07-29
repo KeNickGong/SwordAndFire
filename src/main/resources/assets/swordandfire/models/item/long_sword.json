@@ -1,5 +1,5 @@
 {
-	"texture_size": [32, 32],
+	"texture_size": [64, 64],
 	"textures": {
 		"0": "swordandfire:item/long_sword",
 		"particle": "swordandfire:item/long_sword"
@@ -400,12 +400,12 @@
 		"thirdperson_righthand": {
 			"rotation": [0, 90, 0],
 			"translation": [0, 17, 0],
-			"scale": [1.25, 1.25, 1.25]
+			"scale": [1.2, 1.2, 1.2]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [0, 90, 0],
 			"translation": [0, 17, 0],
-			"scale": [1.25, 1.25, 1.25]
+			"scale": [1.2, 1.2, 1.2]
 		},
 		"firstperson_righthand": {
 			"rotation": [-25, 90, 0],
@@ -423,12 +423,12 @@
 		"gui": {
 			"rotation": [0, 0, -30],
 			"translation": [2, 4, 0],
-			"scale": [0.65, 0.65, 0.65]
+			"scale": [0.6, 0.6, 0.6]
 		},
 		"fixed": {
 			"rotation": [0, 0, 30],
 			"translation": [-2, 4, 0],
-			"scale": [0.65, 0.65, 0.65]
+			"scale": [0.6, 0.6, 0.6]
 		}
 	}
 }

@@ -2,10 +2,7 @@ package com.appledeath.swordandfire.capability;
 
 import com.appledeath.swordandfire.Utils;
 import com.appledeath.swordandfire.item.*;
-import com.appledeath.swordandfire.item.weapontrait.ISaFArmorPenetrable;
-import com.appledeath.swordandfire.item.weapontrait.ISaFCavalryBonus;
-import com.appledeath.swordandfire.item.weapontrait.ISaFShieldPenetrable;
-import com.appledeath.swordandfire.item.weapontrait.ISaFTwoHanded;
+import com.appledeath.swordandfire.item.weapontrait.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -47,7 +44,7 @@ public class SaFCapabilityManager {
         );
 
         //Weapon Trait Capability
-        boolean[] traitProps = new boolean[] {false, false, false, false};
+        boolean[] traitProps = new boolean[] {false, false, false, false, false};
         if (item instanceof ISaFTwoHanded) {
             traitProps[0] = true;
         }
@@ -59,6 +56,9 @@ public class SaFCapabilityManager {
         }
         if (item instanceof ISaFCavalryBonus) {
             traitProps[3] = true;
+        }
+        if (item instanceof ISaFAntiHorse) {
+            traitProps[4] = true;
         }
         e.addCapability(
                 WEAPON_TRAIT_CAPABILITY_NAME,

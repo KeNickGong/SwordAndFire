@@ -1,6 +1,6 @@
 package com.appledeath.swordandfire;
 
-import com.appledeath.swordandfire.entity.ForgeFurnaceTileEntity;
+import com.appledeath.swordandfire.entity.ForgeFurnaceContainerTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 
 @Mod.EventBusSubscriber(modid = Utils.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TileEntityTypeRegistry {
-    public static final TileEntityType<ForgeFurnaceTileEntity> FORGE_FURNACE = registerTileEntity(TileEntityType.Builder.create(ForgeFurnaceTileEntity::new, BlockRegistry.FORGE_FURNACE), "forge_furnace");
+    public static final TileEntityType<ForgeFurnaceContainerTileEntity> FORGE_FURNACE = registerTileEntity(TileEntityType.Builder.create(ForgeFurnaceContainerTileEntity::new, BlockRegistry.FORGE_FURNACE), "forge_furnace");
 
     public static TileEntityType registerTileEntity(TileEntityType.Builder builder, String entityName) {
         ResourceLocation nameLoc = new ResourceLocation(Utils.MOD_ID, entityName);

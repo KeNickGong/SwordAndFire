@@ -8,11 +8,18 @@
   "block.swordandfire.steel_block": "钢块",
 
   "item.swordandfire.viking_sword": "维京单手剑",
+  "item.swordandfire.arming_sword": "武装剑",
+  "item.swordandfire.shamshir_sword": "舍施尔弯刀",
+  "item.swordandfire.atakan_machete": "亚特坎反曲刀",
+  "item.swordandfire.english_claymore": "英格兰斩剑",
   "item.swordandfire.long_sword": "手半剑",
+  "item.swordandfire.scottish_claymore": "苏格兰阔刃大剑",
+  "item.swordandfire.zweihander": "德意志巨剑",
   "item.swordandfire.viking_axe": "维京单手斧",
   "item.swordandfire.crescent_axe": "新月斧",
   "item.swordandfire.nailed_mace": "钉锤",
   "item.swordandfire.gaulish_lance": "高卢骑枪",
+  "item.swordandfire.lowlands_spear": "低地长枪",
 
   "block.swordandfire.anvil": "铁砧",
   "block.swordandfire.forge_furnace": "锻炉",
@@ -23,5 +30,8 @@
   "trait.swordandfire.shield_penetrable_1": "破盾 I",
   "trait.swordandfire.shield_penetrable_2": "破盾 II",
   "trait.swordandfire.cavalry_bonus_1": "骑击 I",
-  "trait.swordandfire.cavalry_bonus_2": "骑击 II"
+  "trait.swordandfire.cavalry_bonus_2": "骑击 II",
+  "trait.swordandfire.anti_horse_1": "拒马 I",
+  "trait.swordandfire.anti_horse_2": "拒马 II",
+  "trait.swordandfire.anti_horse_fall": "击落马下!"
 }

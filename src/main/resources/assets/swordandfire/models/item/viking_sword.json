@@ -319,12 +319,12 @@
 		"firstperson_righthand": {
 			"rotation": [-30, 90, 0],
 			"translation": [0, 7.5, 0],
-			"scale": [0.4, 0.4, 0.4]
+			"scale": [0.35, 0.35, 0.35]
 		},
 		"firstperson_lefthand": {
 			"rotation": [-30, 90, 0],
 			"translation": [0, 7.5, 0],
-			"scale": [0.4, 0.4, 0.4]
+			"scale": [0.35, 0.35, 0.35]
 		},
 		"ground": {
 			"rotation": [0, 0, 45],

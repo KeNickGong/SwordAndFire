@@ -5,10 +5,7 @@ import com.appledeath.swordandfire.capability.IWeaponCapability;
 import com.appledeath.swordandfire.capability.SaFCapabilityManager;
 import com.appledeath.swordandfire.capability.WeaponCapability;
 import com.appledeath.swordandfire.capability.WeaponCapabilityProvider;
-import com.appledeath.swordandfire.item.weapontrait.ISaFArmorPenetrable;
-import com.appledeath.swordandfire.item.weapontrait.ISaFCavalryBonus;
-import com.appledeath.swordandfire.item.weapontrait.ISaFShieldPenetrable;
-import com.appledeath.swordandfire.item.weapontrait.ISaFTwoHanded;
+import com.appledeath.swordandfire.item.weapontrait.*;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
@@ -154,6 +151,9 @@ public class SaFWeaponGenericItem extends SwordItem {
         }
         if (stack.getItem() instanceof ISaFCavalryBonus) {
             tooltip.add(new TranslationTextComponent("trait." + Utils.MOD_ID + ".cavalry_bonus_" + ((ISaFCavalryBonus) stack.getItem()).getCavalryBonusLevel()).mergeStyle(TRAIT_COLOR));
+        }
+        if (stack.getItem() instanceof ISaFAntiHorse) {
+            tooltip.add(new TranslationTextComponent("trait." + Utils.MOD_ID + ".anti_horse_" + ((ISaFAntiHorse) stack.getItem()).getAntiHorseLevel()).mergeStyle(TRAIT_COLOR));
         }
         //tooltip.add(new StringTextComponent("SHIT"));
     }

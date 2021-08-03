@@ -9,12 +9,14 @@ public class WeaponTraitCapability implements IWeaponTraitCapability {
     private static final String ARMOR_PENETRABLE_NBT_KEY = Utils.MOD_ID + "_armor_penetrable";
     private static final String SHIELD_PENETRABLE_NBT_KEY = Utils.MOD_ID + "_shield_penetrable";
     private static final String CAVALRY_BONUS_NBT_KEY = Utils.MOD_ID + "_cavalry_bonus";
+    private static final String ANTI_HORSE_NBT_KEY = Utils.MOD_ID + "_anti_horse";
 
     private boolean isTwoHanded = false;
     private boolean isOffhandEmpty = true;
     private boolean isArmorPenetrable = false;
     private boolean isShieldPenetrable = false;
     private boolean isCavalryBonus = false;
+    private boolean isAntiHorse = false;
 
     public WeaponTraitCapability() {
     }
@@ -24,6 +26,7 @@ public class WeaponTraitCapability implements IWeaponTraitCapability {
         this.isArmorPenetrable = traitProps[1];
         this.isShieldPenetrable = traitProps[2];
         this.isCavalryBonus = traitProps[3];
+        this.isAntiHorse = traitProps[4];
     }
 
 
@@ -60,6 +63,12 @@ public class WeaponTraitCapability implements IWeaponTraitCapability {
     public void setIsCavarlyBonus(boolean isCavarlyBonus) { this.isCavalryBonus = isCavarlyBonus; }
 
     @Override
+    public boolean isAntiHorse() { return isAntiHorse; }
+
+    @Override
+    public void setIsAntiHorse(boolean isAntiHorse) { this.isAntiHorse = isAntiHorse; }
+
+    @Override
     public CompoundNBT serializeNBT() {
         final CompoundNBT nbt = new CompoundNBT();
         nbt.putBoolean(TWO_HANDED_NBT_KEY, isTwoHanded);
@@ -67,6 +76,7 @@ public class WeaponTraitCapability implements IWeaponTraitCapability {
         nbt.putBoolean(ARMOR_PENETRABLE_NBT_KEY, isArmorPenetrable);
         nbt.putBoolean(SHIELD_PENETRABLE_NBT_KEY, isShieldPenetrable);
         nbt.putBoolean(CAVALRY_BONUS_NBT_KEY, isCavalryBonus);
+        nbt.putBoolean(ANTI_HORSE_NBT_KEY, isAntiHorse);
         return nbt;
     }
 
@@ -77,5 +87,6 @@ public class WeaponTraitCapability implements IWeaponTraitCapability {
         this.setIsArmorPenetrable(nbt.getBoolean(ARMOR_PENETRABLE_NBT_KEY));
         this.setIsShieldPenetrable(nbt.getBoolean(SHIELD_PENETRABLE_NBT_KEY));
         this.setIsCavarlyBonus(nbt.getBoolean(CAVALRY_BONUS_NBT_KEY));
+        this.setIsAntiHorse(nbt.getBoolean(ANTI_HORSE_NBT_KEY));
     }
 }

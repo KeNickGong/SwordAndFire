@@ -6,7 +6,7 @@ import net.minecraft.item.ItemGroup;
 
 public class SaFLanceItem extends SaFPoleItem implements ISaFCavalryBonus {
 
-    private int cavarlyBonusLevel;
+    private final int cavarlyBonusLevel;
 
     public SaFLanceItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, float baseWeight, float baseFlex, float baseRange, String name, int cavarlyBonusLevel, ItemGroup category) {
         super(tier, attackDamageIn, attackSpeedIn, baseWeight, baseFlex, baseRange, name, category);

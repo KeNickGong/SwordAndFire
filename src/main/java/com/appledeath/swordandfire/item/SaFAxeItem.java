@@ -6,7 +6,7 @@ import net.minecraft.item.ItemGroup;
 
 public class SaFAxeItem extends SaFWeaponGenericItem implements ISaFShieldPenetrable {
 
-    private int shieldPenetrableLevel;
+    private final int shieldPenetrableLevel;
 
     public SaFAxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, float baseWeight, float baseFlex, float baseRange, String name, int shieldPenetrableLevel, ItemGroup category){
         super(tier, attackDamageIn, attackSpeedIn, baseWeight, baseFlex, baseRange, name, category);

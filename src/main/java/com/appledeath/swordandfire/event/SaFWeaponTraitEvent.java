@@ -3,15 +3,14 @@ package com.appledeath.swordandfire.event;
 import com.appledeath.swordandfire.Utils;
 import com.appledeath.swordandfire.capability.IWeaponTraitCapability;
 import com.appledeath.swordandfire.capability.SaFCapabilityManager;
-import com.appledeath.swordandfire.item.weapontrait.ISaFArmorPenetrable;
-import com.appledeath.swordandfire.item.weapontrait.ISaFCavalryBonus;
-import com.appledeath.swordandfire.item.weapontrait.ISaFShieldPenetrable;
-import com.appledeath.swordandfire.item.weapontrait.ISaFTwoHanded;
+import com.appledeath.swordandfire.item.weapontrait.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -68,6 +67,7 @@ public class SaFWeaponTraitEvent {
         LivingEntity victim = e.getEntityLiving();
 
         ItemStack weapon = attacker.getHeldItemMainhand();
+
         if (!(weapon.getItem() instanceof ISaFArmorPenetrable)) {
             return;
         }
@@ -135,5 +135,38 @@ public class SaFWeaponTraitEvent {
         }
 
         e.setAmount(baseDamage);
+    }
+
+    @SubscribeEvent
+    public static void antiHorseModifier(LivingHurtEvent e) {
+        if (!(e.getSource().getTrueSource() instanceof PlayerEntity)) {
+            return;
+        }
+
+        PlayerEntity attacker = (PlayerEntity) e.getSource().getTrueSource();
+        LivingEntity victim = e.getEntityLiving();
+        ItemStack weapon = attacker.getHeldItemMainhand();
+
+        if (attacker.getRidingEntity() != null) {
+            return;
+        }
+        if (!(weapon.getItem() instanceof ISaFAntiHorse)) {
+            return;
+        }
+
+        if (victim instanceof AbstractHorseEntity) {
+            victim.setAIMoveSpeed(0);
+            victim.setMotion(0, 0, 0);
+        }
+
+        if (victim instanceof PlayerEntity && victim.getRidingEntity() instanceof AbstractHorseEntity) {
+            Random r = new Random();
+            if (r.nextFloat() > 0.9) {
+                victim.stopRiding();
+                if (!victim.getEntityWorld().isRemote) {
+                    attacker.sendStatusMessage(new TranslationTextComponent("trait." + Utils.MOD_ID + ".anti_horse_fall"), false);
+                }
+            }
+        }
     }
 }

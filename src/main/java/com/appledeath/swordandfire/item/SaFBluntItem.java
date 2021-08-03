@@ -6,7 +6,7 @@ import net.minecraft.item.ItemGroup;
 
 public class SaFBluntItem extends SaFWeaponGenericItem implements ISaFArmorPenetrable {
 
-    private int armorPenetrableLevel;
+    private final int armorPenetrableLevel;
 
     public SaFBluntItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, float baseWeight, float baseFlex, float baseRange, String name, int armorPenetrableLevel, ItemGroup category){
         super(tier, attackDamageIn, attackSpeedIn, baseWeight, baseFlex, baseRange, name, category);

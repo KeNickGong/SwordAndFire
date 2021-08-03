@@ -18,4 +18,7 @@ public interface IWeaponTraitCapability extends INBTSerializable<CompoundNBT>  {
 
     boolean isCavalryBonus();
     void setIsCavarlyBonus(boolean isCavarlyBonus);
+
+    boolean isAntiHorse();
+    void setIsAntiHorse(boolean isAntiHorse);
 }
